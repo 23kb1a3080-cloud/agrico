@@ -1583,3 +1583,4 @@ export const injectAppStyles = () => {
   `;
   document.head.appendChild(styleEl);
 };
+

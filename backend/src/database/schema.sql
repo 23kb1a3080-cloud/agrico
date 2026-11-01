@@ -1,0 +1,78 @@
+-- AgriConnect MySQL Schema
+CREATE DATABASE IF NOT EXISTS agriconnect_db
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE agriconnect_db;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(120) NOT NULL,
+    email VARCHAR(160) NOT NULL UNIQUE,
+    phone_number VARCHAR(15) NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('FARMER', 'CUSTOMER', 'ADMIN') NOT NULL DEFAULT 'CUSTOMER',
+    address_line TEXT NULL,
+    city VARCHAR(80) NULL,
+    state VARCHAR(80) NULL,
+    pincode VARCHAR(10) NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS farmer_profiles (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL UNIQUE,
+    farm_name VARCHAR(150) NULL,
+    farm_size_acres DECIMAL(6, 2) NOT NULL DEFAULT 0.00,
+    aadhaar_number VARCHAR(14) NULL,
+    aadhaar_doc_url VARCHAR(255) NULL,
+    land_record_1b_url VARCHAR(255) NULL,
+    verification_status ENUM('PENDING', 'APPROVED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
+    verification_remarks TEXT NULL,
+    verified_at TIMESTAMP NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS products (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    farmer_id INT UNSIGNED NOT NULL,
+    title VARCHAR(180) NOT NULL,
+    category VARCHAR(100) NOT NULL DEFAULT 'Vegetables',
+    farming_type ENUM('ORGANIC', 'CONVENTIONAL') NOT NULL DEFAULT 'CONVENTIONAL',
+    price_per_unit DECIMAL(10, 2) NOT NULL,
+    unit VARCHAR(20) NOT NULL DEFAULT 'KG',
+    available_stock_units DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    primary_image_url VARCHAR(255) NULL,
+    harvest_date DATE NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (farmer_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS orders (
+    id VARCHAR(32) PRIMARY KEY,
+    customer_id INT UNSIGNED NOT NULL,
+    farmer_id INT UNSIGNED NOT NULL,
+    total_amount DECIMAL(12, 2) NOT NULL,
+    order_status ENUM('PLACED', 'CONFIRMED', 'DISPATCHED', 'DELIVERED', 'CANCELLED') NOT NULL DEFAULT 'PLACED',
+    shipping_address TEXT NOT NULL,
+    contact_phone VARCHAR(15) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (farmer_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS community_posts (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    author_id INT UNSIGNED NOT NULL,
+    title VARCHAR(200) NOT NULL,
+    content TEXT NOT NULL,
+    crop_name VARCHAR(100) NULL,
+    post_type VARCHAR(50) NOT NULL DEFAULT 'GENERAL_QUERY',
+    disease_image_url VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;

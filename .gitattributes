@@ -1,8 +1,10 @@
 # GitHub Linguist Overrides
-# Ensure repository displays 100% React / JavaScript
+# Ensure repository displays 100% JavaScript (React JS frontend + Node.js/Express.js backend)
 *.html linguist-detectable=false
 *.html linguist-vendored
 *.json linguist-detectable=false
 *.json linguist-vendored
 *.md linguist-detectable=false
 *.md linguist-vendored
+*.sql linguist-detectable=false
+*.sql linguist-vendored
