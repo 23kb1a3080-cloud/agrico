@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IconLeaf, IconPhone, IconShield, IconSprout } from './Icons';
-import './Footer.css';
 
 export const Footer = () => {
   return (

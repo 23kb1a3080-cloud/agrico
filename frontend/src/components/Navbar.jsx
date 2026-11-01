@@ -13,7 +13,6 @@ import {
   IconClose,
   IconSprout
 } from './Icons';
-import './Navbar.css';
 
 export const Navbar = () => {
   const { user, isAuthenticated, logout, switchRole } = useAuth();

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { IconTractor, IconUpload, IconCheck, IconShield } from '../../components/Icons';
-import './Auth.css';
 
 export const FarmerRegisterPage = () => {
   const { register } = useAuth();

@@ -11,7 +11,6 @@ import {
   IconUser,
   IconCheck
 } from './Icons';
-import './Sidebar.css';
 
 export const Sidebar = () => {
   const { user } = useAuth();

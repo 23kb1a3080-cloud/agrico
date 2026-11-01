@@ -10,7 +10,6 @@ import {
   IconLocation,
   IconCheck
 } from '../../components/Icons';
-import './Community.css';
 
 export const CommunityPage = () => {
   const { communityPosts, addCommunityPost } = useApp();

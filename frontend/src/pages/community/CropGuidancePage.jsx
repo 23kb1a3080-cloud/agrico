@@ -8,7 +8,6 @@ import {
   IconCheck,
   IconArrowRight
 } from '../../components/Icons';
-import './CropGuidance.css';
 
 export const CropGuidancePage = () => {
   const { cropGuides } = useApp();

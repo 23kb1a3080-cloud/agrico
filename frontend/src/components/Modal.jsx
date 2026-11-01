@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { IconClose } from './Icons';
-import './Modal.css';
 
 export const Modal = ({ isOpen, onClose, title, children, maxWidth = "550px" }) => {
   useEffect(() => {

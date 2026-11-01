@@ -8,7 +8,6 @@ import {
   IconLeaf,
   IconTractor
 } from '../../components/Icons';
-import './Marketplace.css';
 
 export const MarketplacePage = () => {
   const { products } = useApp();

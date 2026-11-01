@@ -11,7 +11,6 @@ import {
   IconCheck,
   IconArrowRight
 } from '../../components/Icons';
-import './AdminDashboard.css';
 
 export const AdminDashboard = () => {
   const { users, products, communityPosts, verifyFarmer } = useApp();

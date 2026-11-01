@@ -13,7 +13,6 @@ import {
   IconCheck,
   IconClock
 } from '../../components/Icons';
-import './FarmerDashboard.css';
 
 export const FarmerDashboard = () => {
   const { user } = useAuth();

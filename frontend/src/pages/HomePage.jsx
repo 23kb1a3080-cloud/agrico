@@ -12,7 +12,6 @@ import {
   IconCart,
   IconMessage
 } from '../components/Icons';
-import './HomePage.css';
 
 export const HomePage = () => {
   const { products, communityPosts } = useApp();

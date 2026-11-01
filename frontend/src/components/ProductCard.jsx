@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { StatusBadge } from './StatusBadge';
 import { useCart } from '../context/CartContext';
 import { IconCart, IconLocation, IconStar, IconMessage } from './Icons';
-import './ProductCard.css';
 
 export const ProductCard = ({ product }) => {
   const { addToCart } = useCart();

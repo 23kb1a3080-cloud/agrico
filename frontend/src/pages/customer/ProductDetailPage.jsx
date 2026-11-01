@@ -12,7 +12,6 @@ import {
   IconCheck,
   IconArrowRight
 } from '../../components/Icons';
-import './ProductDetail.css';
 
 export const ProductDetailPage = () => {
   const { id } = useParams();

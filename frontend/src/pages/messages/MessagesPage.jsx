@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
 import { IconMessage, IconUser, IconTractor, IconLocation } from '../../components/Icons';
-import './Messages.css';
 
 export const MessagesPage = () => {
   const { user } = useAuth();
